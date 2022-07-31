@@ -1,0 +1,81 @@
+openapi: 2.0.0
+consumes:
+- application/json
+definitions:
+  Product:
+    description: Product product
+    properties:
+      description:
+        description: description
+        type: string
+        x-go-name: Description
+      id:
+        description: the id of the product
+        format: int64
+        minimum: 1
+        type: integer
+        x-go-name: ID
+      name:
+        description: name
+        type: string
+        x-go-name: Name
+      price:
+        description: price
+        format: float
+        type: number
+        x-go-name: Price
+      sku:
+        description: s k u
+        type: string
+        x-go-name: SKU
+    required:
+    - id
+    type: object
+info:
+  description: Documentation for Product API
+  title: of Product API
+  version: 1.0.0
+paths:
+  /products:
+    get:
+      description: Returns a list of products
+      operationId: listProducts
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Product"
+      tags:
+      - products
+  /products/{id}:
+    delete:
+      description: Deletes a product by id
+      operationId: deleteProduct
+      parameters:
+      - description: the id of the product to delete from the database
+        format: int64
+        in: path
+        name: id
+        required: true
+        type: integer
+        x-go-name: ID
+      responses:
+        "200":
+          $ref: '#/responses/noContent'
+      tags:
+      - products
+responses:
+  noContent:
+    description: ""
+  productsResponse:
+    description: A list of products
+    schema:
+      items:
+        $ref: '#/definitions/Product'
+      type: array
+produces:
+- application/json
+schemes:
+- http

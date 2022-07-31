@@ -1,0 +1,63 @@
+openapi: 3.0.3
+info:
+  description: Documentation for Product API
+  title: of Product API
+  version: 1.0.1
+components:
+  schemas:
+     Product:
+       description: Product
+       properties:
+         description:
+           description: description
+           type: string
+         id:
+           description: the id of the product
+           format: int64
+           minimum: 1
+           type: integer
+         name:
+           description: name
+           type: string
+         price:
+           description: price
+           format: float
+           type: number
+         sku:
+           description: s k u
+           type: string
+       required:
+       - id
+       type: object
+paths:
+  /products:
+    get:
+      description: Returns a list of products
+      operationId: listProducts
+      responses:
+        '200':
+          description: "successful operation"
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  $ref: "#/components/schemas/Product"
+      tags:
+      - product
+  /products/{id}:
+    delete:
+      description: Deletes a product by id
+      operationId: deleteProduct
+      parameters:
+       - name: id
+         description: the id of the product to delete from the database
+         in: path
+         required: true
+         schema:
+            type: long
+      responses:
+         '200':
+          description: OK
+      tags:
+      - product
