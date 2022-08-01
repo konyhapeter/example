@@ -13,15 +13,12 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "Product")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-31T17:55:54.240138800+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-01T21:45:58.533144600+02:00[Europe/Prague]")
 
 
 public class Product   {
   @JsonProperty("description")
   private String description = null;
-
-  @JsonProperty("id")
-  private Long id = null;
 
   @JsonProperty("name")
   private String name = null;
@@ -41,35 +38,15 @@ public class Product   {
    * description
    * @return description
    **/
-  @Schema(description = "description")
-  
+  @Schema(required = true, description = "description")
+      @NotNull
+
     public String getDescription() {
     return description;
   }
 
   public void setDescription(String description) {
     this.description = description;
-  }
-
-  public Product id(Long id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * the id of the product
-   * minimum: 1
-   * @return id
-   **/
-  @Schema(required = true, description = "the id of the product")
-      @NotNull
-
-  @Min(1L)  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
   }
 
   public Product name(String name) {
@@ -81,8 +58,9 @@ public class Product   {
    * name
    * @return name
    **/
-  @Schema(description = "name")
-  
+  @Schema(required = true, description = "name")
+      @NotNull
+
     public String getName() {
     return name;
   }
@@ -100,8 +78,9 @@ public class Product   {
    * price
    * @return price
    **/
-  @Schema(description = "price")
-  
+  @Schema(required = true, description = "price")
+      @NotNull
+
     public Float getPrice() {
     return price;
   }
@@ -140,7 +119,6 @@ public class Product   {
     }
     Product product = (Product) o;
     return Objects.equals(this.description, product.description) &&
-        Objects.equals(this.id, product.id) &&
         Objects.equals(this.name, product.name) &&
         Objects.equals(this.price, product.price) &&
         Objects.equals(this.sku, product.sku);
@@ -148,7 +126,7 @@ public class Product   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, id, name, price, sku);
+    return Objects.hash(description, name, price, sku);
   }
 
   @Override
@@ -157,7 +135,6 @@ public class Product   {
     sb.append("class Product {\n");
     
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    price: ").append(toIndentedString(price)).append("\n");
     sb.append("    sku: ").append(toIndentedString(sku)).append("\n");

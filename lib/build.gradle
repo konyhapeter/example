@@ -12,7 +12,7 @@ buildscript {
     }
   }
   ext {
-	springBootVersion = '2.7.1'
+	springBootVersion = '2.7.2'
 	appName      = 'product-service'
   }
   dependencies {
@@ -28,6 +28,8 @@ plugins {
     id 'java-library'
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id 'org.liquibase.gradle' version '2.1.1'
+    id 'net.ltgt.apt-eclipse' version "0.21"
+    // gradle eclipseJdtApt eclipseFactorypath eclipseJdt
 }
 apply plugin: 'eclipse'
 apply plugin: 'java'
@@ -53,18 +55,22 @@ dependencies {
 	// Spring Data REST support
 	implementation('org.springframework.boot:spring-boot-starter-data-rest')
 	
-	//implementation('org.springframework.boot:spring-boot-starter-security')
+
 
 	// PostgresSQL-specific connector for JPA
 	// https://mavenlibs.com/maven/dependency/org.postgresql/postgresql
 	implementation 'org.postgresql:postgresql:42.4.0'
 	
 	implementation("org.liquibase:liquibase-core:4.13.0")
-	
+	implementation 'org.mapstruct:mapstruct:1.5.2.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
+	//security
+	//https://www.youtube.com/watch?v=MOCeQYbQPPU&ab_channel=DailyCodeBuffer
+	//implementation('org.springframework.boot:spring-boot-starter-security')
 	// https://mvnrepository.com/artifact/org.springframework.security.oauth/spring-security-oauth2
 	//implementation 'org.springframework.security.oauth:spring-security-oauth2:2.5.2.RELEASE'
 	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-jwt
-	implementation 'org.springframework.security:spring-security-jwt:1.1.1.RELEASE'
+	//implementation 'org.springframework.security:spring-security-jwt:1.1.1.RELEASE'
 
 	implementation("org.springframework.boot:spring-boot-starter-jdbc")
 	
@@ -90,7 +96,6 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	testImplementation('org.springframework.security:spring-security-test')
 }
-
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()

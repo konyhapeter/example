@@ -1,11 +1,54 @@
 # ProductApi
 
-All URIs are relative to */*
+All URIs are relative to *http://api.example.com/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**addProduct**](ProductApi.md#addProduct) | **POST** /products | 
 [**deleteProduct**](ProductApi.md#deleteProduct) | **DELETE** /products/{id} | 
 [**listProducts**](ProductApi.md#listProducts) | **GET** /products | 
+
+<a name="addProduct"></a>
+# **addProduct**
+> addProduct(body)
+
+
+
+### Example
+```java
+// Import classes:
+//import productservice.client.ApiException;
+//import productservice.api.ProductApi;
+
+
+ProductApi apiInstance = new ProductApi();
+Product body = new Product(); // Product | 
+try {
+    apiInstance.addProduct(body);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ProductApi#addProduct");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**Product**](Product.md)|  |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 <a name="deleteProduct"></a>
 # **deleteProduct**

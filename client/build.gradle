@@ -103,7 +103,7 @@ dependencies {
     }
     task deleteTestFilesTask(type: Delete) {
 		    println 'delete'
-			delete "${rootDir}/client/src/test/java"
+			delete "${rootDir}/client/src/test/java/productservice/api/ProductApiTest.java"
 			println 'delete ended'
 	}
     /* Defining the order of the tasks and the dependency between them.

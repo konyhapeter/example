@@ -39,7 +39,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-07-31T17:55:54.240138800+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-01T21:45:58.533144600+02:00[Europe/Prague]")
 @Validated
 public interface ProductsApi {
 
@@ -56,6 +56,24 @@ public interface ProductsApi {
     default Optional<String> getAcceptHeader() {
         return getRequest().map(r -> r.getHeader("Accept"));
     }
+
+    @Operation(summary = "", description = "", tags={ "product" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Successfully added a Product"),
+        
+        @ApiResponse(responseCode = "400", description = "Invalid Product request", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Object.class))) })
+    @RequestMapping(value = "/products",
+        produces = { "application/json" }, 
+        consumes = { "application/json" }, 
+        method = RequestMethod.POST)
+    default ResponseEntity<Void> addProduct(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Product body) {
+        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
+        } else {
+            log.warn("ObjectMapper or HttpServletRequest not configured in default ProductsApi interface so no example is generated");
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
 
     @Operation(summary = "", description = "Deletes a product by id", tags={ "product" })
     @ApiResponses(value = { 
@@ -81,7 +99,7 @@ public interface ProductsApi {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
             if (getAcceptHeader().get().contains("application/json")) {
                 try {
-                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ {\r\n  \"price\" : 6.0274563,\r\n  \"name\" : \"name\",\r\n  \"description\" : \"description\",\r\n  \"id\" : 1,\r\n  \"sku\" : \"sku\"\r\n}, {\r\n  \"price\" : 6.0274563,\r\n  \"name\" : \"name\",\r\n  \"description\" : \"description\",\r\n  \"id\" : 1,\r\n  \"sku\" : \"sku\"\r\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ {\r\n  \"price\" : 0.8008282,\r\n  \"name\" : \"name\",\r\n  \"description\" : \"description\",\r\n  \"sku\" : \"sku\"\r\n}, {\r\n  \"price\" : 0.8008282,\r\n  \"name\" : \"name\",\r\n  \"description\" : \"description\",\r\n  \"sku\" : \"sku\"\r\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
                 } catch (IOException e) {
                     log.error("Couldn't serialize response for content type application/json", e);
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

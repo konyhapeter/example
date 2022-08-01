@@ -50,7 +50,7 @@ import productservice.client.auth.HttpBasicAuth;
 import productservice.client.auth.ApiKeyAuth;
 import productservice.client.auth.OAuth;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-07-31T17:55:53.608850900+02:00[Europe/Prague]")@Component("productservice.client.ApiClient")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-08-01T21:45:57.882061100+02:00[Europe/Prague]")@Component("productservice.client.ApiClient")
 public class ApiClient {
     public enum CollectionFormat {
         CSV(","), TSV("\t"), SSV(" "), PIPES("|"), MULTI(null);
@@ -69,7 +69,7 @@ public class ApiClient {
     
     private HttpHeaders defaultHeaders = new HttpHeaders();
     
-    private String basePath = "/";
+    private String basePath = "http://api.example.com/v1";
 
     private RestTemplate restTemplate;
 
