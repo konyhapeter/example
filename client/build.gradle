@@ -53,6 +53,17 @@ jar {
 bootJar {
 	enabled = false
 }
+sourceSets {
+    // Adding src/generated
+    generated {
+    }
+    // Setting src/main to depend on the dependencies and output of src/generated
+    main {
+        compileClasspath += generated.compileClasspath + generated.output
+        runtimeClasspath += generated.runtimeClasspath + generated.output
+    }
+}
+
 dependencies {
 
 	  // Spring Boot's web application support
@@ -76,7 +87,7 @@ dependencies {
             def openAPI = new OpenAPIV3Parser().read(swaggerFile.toString(), null, null)
             def clientOptInput = new ClientOptInput().openAPI(openAPI)
             def codegenConfig = CodegenConfigLoader.forName('java')
-            codegenConfig.setOutputDir("${rootDir}/client")
+            codegenConfig.setOutputDir("${projectDir}/src/generated/java")
             
             clientOptInput.setConfig(codegenConfig)
             
@@ -91,7 +102,8 @@ dependencies {
                 	'modelPackage'    : project.modelPackage,
                 	'invokerPackage'  : project.invokerPackage,
                 	'library'		  : 'resttemplate',
-                	'generateApiTests': 'false'
+                	'generateApiTests': 'false',
+                	'sourceFolder'	  : ''
             ])
             clientOptInput.setOpts(clientOps)
 
@@ -103,7 +115,7 @@ dependencies {
     }
     task deleteTestFilesTask(type: Delete) {
 		    println 'delete'
-			delete "${rootDir}/client/src/test/java/productservice/api/ProductApiTest.java"
+			delete "${projectDir}/src/generated/java/src/test/java/productservice/api/ProductApiTest.java"
 			println 'delete ended'
 	}
     /* Defining the order of the tasks and the dependency between them.
@@ -111,8 +123,12 @@ dependencies {
        then the compilation of the generated files.
      */
     compileJava.dependsOn('generateClient')
-    compileTestJava.dependsOn('deleteTestFilesTask')
+    compileGeneratedJava.dependsOn('generateClient')
+    compileGeneratedJava.dependsOn('deleteTestFilesTask')
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+configurations {
+    generatedImplementation.extendsFrom(implementation)
 }

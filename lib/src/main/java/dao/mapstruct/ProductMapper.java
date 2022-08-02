@@ -7,7 +7,7 @@ import org.mapstruct.factory.Mappers;
 import dao.ProductEntity;
 import productservice.model.Product;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ProductMapper {
 
 	ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);

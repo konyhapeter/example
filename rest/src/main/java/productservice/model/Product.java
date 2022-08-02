@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "Product")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-01T21:45:58.533144600+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-02T18:43:16.648942500+02:00[Europe/Prague]")
 
 
 public class Product   {
