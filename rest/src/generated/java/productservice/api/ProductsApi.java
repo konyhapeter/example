@@ -39,7 +39,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-02T18:43:16.648942500+02:00[Europe/Prague]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-08-02T19:04:12.919295100+02:00[Europe/Prague]")
 @Validated
 public interface ProductsApi {
 

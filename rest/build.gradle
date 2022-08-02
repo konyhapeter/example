@@ -53,6 +53,13 @@ jar {
 bootJar {
 	enabled = false
 }
+sourceSets {
+    // Adding src/generated
+    generated {
+    }
+    main {
+    }
+}
 dependencies {
 
   // Spring Boot's web application support
@@ -71,7 +78,7 @@ dependencies {
             def openAPI = new OpenAPIV3Parser().read(swaggerFile.toString(), null, null)
             def clientOpts = new ClientOptInput().openAPI(openAPI)
             def codegenConfig = CodegenConfigLoader.forName('spring')
-            codegenConfig.setOutputDir("${rootDir}/rest")
+            codegenConfig.setOutputDir("${projectDir}/src/generated/java")
             
             clientOpts.setConfig(codegenConfig)
             
@@ -81,7 +88,8 @@ dependencies {
             		'interfaceOnly'   : 'true',   // Generating the Controller API interface and the models only
                     'apiPackage'      : project.apiPackage,
                 	'modelPackage'    : project.modelPackage,
-                	'library'		  : 'spring-boot'
+                	'library'		  : 'spring-boot',
+                	'sourceFolder'	  : ''
             ])
             clientOpts.setOpts(clientOps)
 
@@ -96,7 +104,11 @@ dependencies {
        then the compilation of the generated files.
      */
     compileJava.dependsOn('generateServer')
+    compileGeneratedJava.dependsOn('generateClient')
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+configurations {
+    generatedImplementation.extendsFrom(implementation)
 }
