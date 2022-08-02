@@ -10,3 +10,4 @@ build
 /rest/docs
 /client/docs
 /client/src/generated
+/rest/src/generated
