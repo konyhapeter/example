@@ -20,15 +20,8 @@ public class ProductController implements ProductsApi {
 	@Autowired
 	private ProductRepository productRepository;
 
-//	private static ObjectMapper mapper = new ObjectMapper();
-//	private static ObjectWriter objectWriter = mapper.writer().withDefaultPrettyPrinter();
-
 	@Autowired
 	private ProductMapper productMapper;
-
-//	static {
-//		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-//	}
 
 	@Override
 	public ResponseEntity<Void> deleteProduct(Long id) {
@@ -48,25 +41,4 @@ public class ProductController implements ProductsApi {
 		productRepository.save(productMapper.modelToEntity(product));
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
-
-//	private static Product mapProductEntityToModel(ProductEntity entity) {
-//		return mapObjects(entity, Product.class);
-//	}
-//
-//	private static ProductEntity mapProductModelToEntity(Product model) {
-//		return mapObjects(model, ProductEntity.class);
-//
-//	}
-//
-//	private static <T, S> T mapObjects(S object, Class classOfObject) {
-//
-//		try {
-//			String jsonString = objectWriter.writeValueAsString(object);
-//			return (T) mapper.readValue(jsonString, classOfObject);
-//		} catch (JsonProcessingException e) {
-//			throw new RuntimeException("Cannot read json class", e);
-//		}
-//
-//	}
-
 }
