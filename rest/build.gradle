@@ -60,6 +60,9 @@ sourceSets {
     main {
     }
 }
+
+//with this, we can see the generated classes in another project
+sourceSets.main.java.srcDirs += ['src/generated/java']
 dependencies {
 
   // Spring Boot's web application support
@@ -104,7 +107,7 @@ dependencies {
        then the compilation of the generated files.
      */
     compileJava.dependsOn('generateServer')
-    compileGeneratedJava.dependsOn('generateClient')
+    compileGeneratedJava.dependsOn('generateServer')
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
