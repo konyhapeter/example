@@ -10,7 +10,7 @@ public class ProductCaller {
 
 	public static void main(String[] args) {
 		ApiClient apiClient = new ApiClient();
-		apiClient.setBasePath("http://localhost:8080");
+		apiClient.setBasePath("http://localhost:8081/resource-server/api/products");
 		ProductApi api = new ProductApi(apiClient);
 		// ctrl + 1
 

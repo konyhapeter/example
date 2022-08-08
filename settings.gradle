@@ -11,3 +11,6 @@ rootProject.name = 'dao'
 include('lib')
 include('rest')
 include('client')
+include('product-ui')
+
+project(":product-ui").projectDir = file("../product-ui")

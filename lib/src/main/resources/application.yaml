@@ -1,3 +1,7 @@
+server: 
+  port: 8081
+  servlet: 
+    context-path: /resource-server
 spring:
   datasource:
     driver-class-name: org.h2.Driver
@@ -27,5 +31,10 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8083/auth/realms/baeldung
-          jwk-set-uri: http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/certs
+          issuer-uri: http://localhost:8080/realms/SpringBootKeycloak
+          jwk-set-uri: http://localhost:8080/realms/SpringBootKeycloak/protocol/openid-connect/certs
+keycloak:
+  realm: SpringBootKeycloak
+  auth-server-url: http://localhost:8080/
+  resource: login-app
+  bearer-only: true
