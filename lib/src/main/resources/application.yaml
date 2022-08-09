@@ -27,6 +27,7 @@ spring:
     console:
       enabled: true
       path: /console
+       # Opaque Tokens: https://www.baeldung.com/spring-security-oauth-resource-server
   security:
     oauth2:
       resourceserver:
