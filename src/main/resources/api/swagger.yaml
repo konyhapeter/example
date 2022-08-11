@@ -7,6 +7,7 @@ info:
 components:
   schemas:
     $ref: './components/_index.yaml'
+    # https://github.com/dgarcia360/openapi-boilerplate/blob/master/src/openapi.yaml
 
 paths:
    /products:
