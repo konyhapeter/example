@@ -1,0 +1,3 @@
+Product:
+  $ref: "./product.yaml"
+# more objects to $ref

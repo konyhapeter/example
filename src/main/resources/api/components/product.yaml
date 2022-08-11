@@ -1,0 +1,25 @@
+description: Product component
+properties:
+   description:
+      description: description
+      type: string
+#id:
+#  description: the id of the product
+#  format: int64
+#  minimum: 1
+#  type: integer
+   name:
+      description: name
+      type: string
+   price:
+      description: price
+      format: float
+      type: number
+   sku:
+      description: s k u
+      type: string
+required:
+- name
+- price
+- description
+type: object

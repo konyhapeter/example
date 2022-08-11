@@ -1,93 +1,65 @@
 openapi: 3.0.3
 info:
-  description: Documentation for Product API
-  title: of Product API
-  version: 1.0.1
-  
-servers:
-  - url: http://api.example.com/v1
-    description: Optional server description, e.g. Main (production) server
-  - url: http://localhost:8080
-    description: Optional server description, e.g. Internal staging server for testing
+   description: Documentation for Product API
+   title: of Product API
+   version: 1.0.1
+   
 components:
   schemas:
-     Product:
-       description: Product
-       properties:
-         description:
-           description: description
-           type: string
-         #id:
-         #  description: the id of the product
-         #  format: int64
-         #  minimum: 1
-         #  type: integer
-         name:
-           description: name
-           type: string
-         price:
-           description: price
-           format: float
-           type: number
-         sku:
-           description: s k u
-           type: string
-       required:
-       - name
-       - price
-       - description
-       type: object
+    $ref: './components/_index.yaml'
+
 paths:
-  /products:
-    get:
-      description: Returns a list of products
-      operationId: listProducts
-      responses:
-        '200':
-          description: "successful operation"
-          content:
-            application/json:
-              schema: 
-                type: array
-                items: 
-                  $ref: "#/components/schemas/Product"
-      tags:
-      - product
-    post:
-      operationId: addProduct
-      requestBody:
-        required: true
-        content:
-          application/json:
+   /products:
+      get:
+         description: Returns a list of products
+         operationId: listProducts
+         responses:
+            '200':
+               description: successful operation
+               content:
+                  application/json:
+                     schema:
+                        type: array
+                        properties:
+                        items:
+                           $ref: '../components/product.yaml'
+         tags:
+         - product
+      post:
+         operationId: addProduct
+         requestBody:
+            required: true
+            content:
+               application/json:
+                  schema:
+                     $ref: '../components/product.yaml'
+         responses:
+            '200':
+               description: Successfully added a Product
+            '400':
+               description: Invalid Product request
+               content:
+                  application/json:
+                     schema:
+                        type: object
+                        properties:
+                           message:
+                              type: string
+         tags:
+         - product
+   /products/{id}:
+      delete:
+         description: Deletes a product by id
+         operationId: deleteProduct
+         parameters:
+         -  name: id #should be name
+            description: the id of the product to delete from the database
+            in: path
+            required: true
             schema:
-              $ref: "#/components/schemas/Product"
-      responses:
-        '200':
-          description: Successfully added a Product
-        '400':
-          description: Invalid Product request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-      tags:
-      - product
-  /products/{id}:
-    delete:
-      description: Deletes a product by id
-      operationId: deleteProduct
-      parameters:
-       - name: id #should be name
-         description: the id of the product to delete from the database
-         in: path
-         required: true
-         schema:
-            type: long
-      responses:
-         '200':
-          description: OK
-      tags:
-      - product
+               type: long
+         responses:
+            '200':
+               description: OK
+         tags:
+         - product

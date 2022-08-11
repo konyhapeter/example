@@ -28,6 +28,7 @@ import io.swagger.codegen.v3.DefaultGenerator
 import io.swagger.codegen.v3.ClientOptInput
 import io.swagger.codegen.v3.ClientOpts
 import io.swagger.v3.parser.OpenAPIV3Parser
+import io.swagger.v3.parser.core.models.ParseOptions;
 
 
 
@@ -78,7 +79,9 @@ dependencies {
     // Actual task for generating the server
     task generateServer {
         doLast {
-            def openAPI = new OpenAPIV3Parser().read(swaggerFile.toString(), null, null)
+         	def parseOptions = new ParseOptions()
+            parseOptions.setResolve(true)
+            def openAPI = new OpenAPIV3Parser().read(swaggerFile.toString(), null, parseOptions)
             def clientOpts = new ClientOptInput().openAPI(openAPI)
             def codegenConfig = CodegenConfigLoader.forName('spring')
             codegenConfig.setOutputDir("${projectDir}/src/generated/java")
