@@ -3,28 +3,14 @@ info:
    description: Documentation for Product API
    title: of Product API
    version: 1.0.1
-   
-components:
-  schemas:
-    $ref: './components/_index.yaml'
-    # https://github.com/dgarcia360/openapi-boilerplate/blob/master/src/openapi.yaml
 
+components:
+   schemas:
+      $ref: ./components/_index.yaml
 paths:
+
+# https://github.com/dgarcia360/openapi-boilerplate/blob/master/src/openapi.yaml
    /products:
-     $ref: "./paths/products.yaml"
+      $ref: ./paths/products.yaml
    /products/{id}:
-      delete:
-         description: Deletes a product by id
-         operationId: deleteProduct
-         parameters:
-         -  name: id #should be name
-            description: the id of the product to delete from the database
-            in: path
-            required: true
-            schema:
-               type: long
-         responses:
-            '200':
-               description: OK
-         tags:
-         - product
+      $ref: ./paths/productDelete.yaml

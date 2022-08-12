@@ -109,10 +109,10 @@ tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
-task copyPublicResources(type: Copy) {
+/*task copyPublicResources(type: Copy) {
               from '../../product-ui/dist/product-ui/'
               into 'src/main/resources/static/'
 }
  
 copyPublicResources.dependsOn(':product-ui:buildApp')
-processResources.dependsOn(copyPublicResources)
+processResources.dependsOn(copyPublicResources)*/
