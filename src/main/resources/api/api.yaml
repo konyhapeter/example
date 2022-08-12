@@ -4,9 +4,6 @@ info:
    title: of Product API
    version: 1.0.1
 
-components:
-   schemas:
-      $ref: ./components/_index.yaml
 paths:
 
 # https://github.com/dgarcia360/openapi-boilerplate/blob/master/src/openapi.yaml

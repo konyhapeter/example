@@ -1,9 +1,8 @@
 package productservice.caller;
 
-import java.util.List;
-
 import productservice.api.ProductApi;
 import productservice.client.ApiClient;
+import productservice.model.GetProductResponse;
 import productservice.model.Product;
 
 public class ProductCaller {
@@ -14,8 +13,8 @@ public class ProductCaller {
 		ProductApi api = new ProductApi(apiClient);
 		// ctrl + 1
 
-		List<Product> listProducts = api.listProducts();
-		System.out.println(listProducts);
+		GetProductResponse getProductResponse = api.listProducts();
+		System.out.println(getProductResponse.getProducts());
 
 //		api.deleteProduct(1l);
 		
@@ -28,7 +27,7 @@ public class ProductCaller {
 		
 		api.addProduct(product);
 //
-		listProducts = api.listProducts();
-		System.out.println(listProducts);
+		getProductResponse = api.listProducts();
+		System.out.println(getProductResponse.getProducts());
 	}
 }

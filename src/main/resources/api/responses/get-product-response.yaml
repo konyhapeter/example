@@ -1,0 +1,9 @@
+description: Get products response
+type: object
+properties:
+   products:
+      description: products to return
+      type: array
+      properties: null
+      items:
+         $ref: ../components/product.yaml

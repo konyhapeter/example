@@ -6,11 +6,9 @@ get:
          description: successful operation
          content:
             application/json:
+# should be response object
                schema:
-                  type: array
-                  properties: null
-                  items:
-                     $ref: ../components/product.yaml
+                  $ref: ../responses/get-product-response.yaml
    tags:
    - product
 post:

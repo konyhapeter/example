@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dao.mapstruct.ProductMapper;
 import productservice.api.ProductsApi;
+import productservice.model.GetProductResponse;
 import productservice.model.Product;
 
 @RestController
@@ -32,13 +33,29 @@ public class ProductController implements ProductsApi {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
+//	@Override
+//	@CrossOrigin(origins = "http://localhost:4200")    
+//	public ResponseEntity<List<Product>> listProducts() {
+//		List<Product> results = productRepository.findAll().stream().map(entity -> productMapper.entityToModel(entity))
+//				.collect(Collectors.toList());
+//		
+//		
+//		return new ResponseEntity<List<Product>>(results, HttpStatus.OK);
+//	}
+	
 	@Override
 	@CrossOrigin(origins = "http://localhost:4200")    
-	public ResponseEntity<List<Product>> listProducts() {
+	public ResponseEntity<GetProductResponse> listProducts() {
 		List<Product> results = productRepository.findAll().stream().map(entity -> productMapper.entityToModel(entity))
 				.collect(Collectors.toList());
-		return new ResponseEntity<List<Product>>(results, HttpStatus.OK);
+		
+		GetProductResponse getProductResponse = new GetProductResponse();
+		getProductResponse.setProducts(results);
+		
+		return new ResponseEntity<GetProductResponse>(getProductResponse, HttpStatus.OK);
 	}
+	
+	
 
 	@Override
 	public ResponseEntity<Void> addProduct(@Valid Product product) {
