@@ -16,7 +16,6 @@ buildscript {
 	appName      = 'product-service'
 	apiPackage   = 'productservice.api'
 	modelPackage = 'productservice.model'
-	swaggerFile  = "${rootDir}/api/swagger.yaml"
   }
   dependencies {
     classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -75,13 +74,13 @@ dependencies {
 }
 	ext.apiPackage   = 'productservice.api'
 	ext.modelPackage = 'productservice.model'
-	ext.swaggerFile  = "${rootDir}/src/main/resources/api/swagger.yaml"
+	ext.apiFile  = "${rootDir}/src/main/resources/api/api.yaml"
     // Actual task for generating the server
     task generateServer {
         doLast {
          	def parseOptions = new ParseOptions()
             parseOptions.setResolve(true)
-            def openAPI = new OpenAPIV3Parser().read(swaggerFile.toString(), null, parseOptions)
+            def openAPI = new OpenAPIV3Parser().read(apiFile.toString(), null, parseOptions)
             def clientOpts = new ClientOptInput().openAPI(openAPI)
             def codegenConfig = CodegenConfigLoader.forName('spring')
             codegenConfig.setOutputDir("${projectDir}/src/generated/java")
