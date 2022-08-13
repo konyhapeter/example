@@ -28,9 +28,16 @@ public class ProductController implements ProductsApi {
 	private ProductMapper productMapper;
 
 	@Override
-	public ResponseEntity<Void> deleteProduct(Long id) {
-		productRepository.deleteById(id);
+	public ResponseEntity<Void> deleteProduct(String name) {
+		productRepository.deleteProductByName(name);
 		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+
+	@Override
+	public ResponseEntity<Product> getProduct(String name) {
+		ProductEntity entity = productRepository.getProductByName(name);
+
+		return new ResponseEntity<Product>(productMapper.entityToModel(entity), HttpStatus.OK);
 	}
 
 //	@Override
@@ -42,20 +49,18 @@ public class ProductController implements ProductsApi {
 //		
 //		return new ResponseEntity<List<Product>>(results, HttpStatus.OK);
 //	}
-	
+
 	@Override
-	@CrossOrigin(origins = "http://localhost:4200")    
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<GetProductResponse> listProducts() {
 		List<Product> results = productRepository.findAll().stream().map(entity -> productMapper.entityToModel(entity))
 				.collect(Collectors.toList());
-		
+
 		GetProductResponse getProductResponse = new GetProductResponse();
 		getProductResponse.setProducts(results);
-		
+
 		return new ResponseEntity<GetProductResponse>(getProductResponse, HttpStatus.OK);
 	}
-	
-	
 
 	@Override
 	public ResponseEntity<Void> addProduct(@Valid Product product) {

@@ -9,5 +9,5 @@ paths:
 # https://github.com/dgarcia360/openapi-boilerplate/blob/master/src/openapi.yaml
    /products:
       $ref: ./paths/products.yaml
-   /products/{id}:
-      $ref: ./paths/productDelete.yaml
+   /products/{name}:
+      $ref: ./paths/productPathName.yaml

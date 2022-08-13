@@ -1,0 +1,35 @@
+get:
+   description: Returns a product
+   operationId: getProduct
+   tags:
+   - product
+   parameters:
+   -  name: name
+      description: a returned product
+      in: path
+      required: true
+      schema:
+         type: string
+#      format: if int64 # as long
+   responses:
+      '200':
+         description: successful operation
+         content:
+            application/json:
+               schema:
+                  $ref: ../components/product.yaml
+delete:
+   description: Deletes a product by id
+   operationId: deleteProduct
+   parameters:
+   -  name: name
+      description: name id of the product to delete from the database
+      in: path
+      required: true
+      schema:
+         type: string
+   responses:
+      '200':
+         description: OK
+   tags:
+   - product
