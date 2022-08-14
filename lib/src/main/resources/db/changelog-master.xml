@@ -72,7 +72,7 @@
 
 	<changeSet author="pkonyha" id="insert-example-2">
 		<insert tableName="PRODUCT">
-			<column name="id" valueSequenceNext="product_id_seq"/>
+			<column name="id" valueSequenceNext="product_id_seq" />
 			<column name="name" value="Coffee" />
 			<column name="description" value="Very good coffee" />
 			<column name="price" value="3.14" />
@@ -97,10 +97,10 @@
 		<addUniqueConstraint columnNames="content, title" constraintName="uk_bkkjcjrrl1t9e2j0ptwdl8etm" tableName="post" />
 	</changeSet>
 
-	<changeSet author="patouche" id="1444232542055-8">
+	<!-- 	<changeSet author="patouche" id="1444232542055-8">
 		<comment>Add foreign key constraint on table comment for column post_id.</comment>
 		<addForeignKeyConstraint baseColumnNames="post_id" baseTableName="comment" constraintName="fk_f1sl0xkd2lucs7bve3ktt3tu5" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="post" />
-	</changeSet>
+	</changeSet>-->
 
 
 </databaseChangeLog>

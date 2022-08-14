@@ -6,7 +6,6 @@ get:
          description: successful operation
          content:
             application/json:
-# should be response object
                schema:
                   $ref: ../responses/get-product-response.yaml
    tags:
