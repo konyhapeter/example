@@ -55,7 +55,7 @@ dependencies {
 
 	// PostgresSQL-specific connector for JPA
 	// https://mavenlibs.com/maven/dependency/org.postgresql/postgresql
-	implementation 'org.postgresql:postgresql:42.4.0'
+	implementation 'org.postgresql:postgresql:42.4.1'
 	
 	implementation("org.liquibase:liquibase-core:4.13.0")
 	implementation 'org.mapstruct:mapstruct:1.5.2.Final'
@@ -71,7 +71,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-jdbc")
 	
 	implementation project(':rest')
-	
+	implementation 'javax.validation:validation-api:2.0.1.Final'
 	//implementation 'io.springfox:springfox-oas:3.0.0'
 	//implementation 'org.threeten:threetenbp:1.6.0'
 	// Lombok autogenerates things like getters and setters

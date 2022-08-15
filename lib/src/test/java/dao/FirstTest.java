@@ -50,22 +50,22 @@ public class FirstTest {
 	public static void before() throws JSONException {
 		// get access token
 		RestTemplate restTemplate = new RestTemplate();
-		
+
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-		
+
 		MultiValueMap<String, String> paramsForRestTemplate = new LinkedMultiValueMap<>();
-		
+
 		paramsForRestTemplate.add("grant_type", "client_credentials");
 		paramsForRestTemplate.add("client_secret", "gG3ID1HDikbvaHaa8kTnMhvHUQmginqw");
 		paramsForRestTemplate.add("client_id", "login-app");
-		
+
 		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(paramsForRestTemplate, headers);
-		
+
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(tokenUrl, request, String.class);
-		
+
 		JSONObject jsonObject = new JSONObject(responseEntity.getBody());
-		
+
 		AUTH_TOKEN = jsonObject.getString("access_token");
 	}
 
@@ -75,8 +75,10 @@ public class FirstTest {
 				.perform(get("/api/products/products").header(HttpHeaders.AUTHORIZATION, "Bearer " + AUTH_TOKEN))
 				.andExpect(status().isOk()).andReturn();
 
-		GetProductResponse response = readJsonString(result.getResponse().getContentAsString(), GetProductResponse.class);
-		Assertions.assertTrue(response.getProducts().size() == 3, "response should contain 3 elements");
+		GetProductResponse response = readJsonString(result.getResponse().getContentAsString(),
+				GetProductResponse.class);
+		Assertions.assertTrue(response.getProducts().size() == 3,
+				"response should contain 3 elements, but was: " + response.getProducts().size());
 	}
 
 	private static <T> T readJsonString(String jsonString, Class classOfObject) {

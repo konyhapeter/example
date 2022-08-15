@@ -50,7 +50,7 @@
 	</changeSet>
 
 	<changeSet author="pkonyha" id="pkonyha-create-product-table">
-		<comment>Create table comment.</comment>
+		<comment>Create table product.</comment>
 		<createTable tableName="PRODUCT">
 			<column name="id" type="BIGINT" defaultValueSequenceNext="product_id_seq">
 				<constraints nullable="false" />
@@ -79,7 +79,24 @@
 			<column name="sku" value="uks" />
 		</insert>
 	</changeSet>
-
+	<changeSet author="pkonyha" id="insert-example-3">
+		<insert tableName="PRODUCT">
+			<column name="id" valueSequenceNext="product_id_seq" />
+			<column name="name" value="Second coffee" />
+			<column name="description" value="Better coffee" />
+			<column name="price" value="15.39" />
+			<column name="sku" value="uks" />
+		</insert>
+	</changeSet>
+		<changeSet author="pkonyha" id="insert-example-4">
+		<insert tableName="PRODUCT">
+			<column name="id" valueSequenceNext="product_id_seq" />
+			<column name="name" value="Third Coffee" />
+			<column name="description" value="Bad coffee" />
+			<column name="price" value="1.11" />
+			<column name="sku" value="uks" />
+		</insert>
+	</changeSet>
 	<changeSet author="patouche" id="1444232542055-5">
 		<comment>Add primary key constraint on table comment.</comment>
 		<addPrimaryKey columnNames="id" constraintName="comment_pkey" tableName="comment" />

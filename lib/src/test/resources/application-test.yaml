@@ -1,42 +1,26 @@
-server: 
-  port: 8081
-  servlet: 
-    context-path: /resource-server
 spring:
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:myDB
-    username: sa
-    password: 
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: ${POSTGRES_PASSWORD}
+    schema: public #need working on this, use another schema, CREATE SCHEMA test
   liquibase:
-    enabled: false # because of hibernate config, dunno why it is not working, maybe because of H2....
-    user: sa
-    password:
+    enabled: true
+    user: postgres
+    password: ${POSTGRES_PASSWORD}  #-Dspring.application.json={"spring":{"datasource":{"password":"stalker123ABC"},"liquibase":{"password":"stalker123ABC"}}}
     change-log: classpath:db/changelog-master.xml
-    url: jdbc:h2:mem:myDB
+    url: jdbc:postgresql://localhost:5432/postgres
+    liquibase-schema: public #need working on this, use another schema, CREATE SCHEMA test 
+    
+    # https://docs.liquibase.com/tools-integrations/springboot/springboot.html
   jpa:
     hibernate:
-      ddl-auto: create
-      database-platform: org.hibernate.dialect.H2Dialect
+      ddl-auto: none
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
-    defer-datasource-initialization: true
     properties:
       hibernate:
+        default_schema: public #need working on this, use another schema, CREATE SCHEMA test
         use_sql_comments: true
         format_sql: true
-  h2:
-    console:
-      enabled: true
-      path: /console
-       # Opaque Tokens: https://www.baeldung.com/spring-security-oauth-resource-server
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:8080/realms/SpringBootKeycloak
-          jwk-set-uri: http://localhost:8080/realms/SpringBootKeycloak/protocol/openid-connect/certs
-keycloak:
-  realm: SpringBootKeycloak
-  auth-server-url: http://localhost:8080/
-  resource: login-app
-  bearer-only: true
