@@ -19,11 +19,11 @@ get:
                schema:
                   $ref: ../components/product.yaml
 delete:
-   description: Deletes a product by id
+   description: Deletes a product by name
    operationId: deleteProduct
    parameters:
    -  name: name
-      description: name id of the product to delete from the database
+      description: name of the product to delete from the database
       in: path
       required: true
       schema:
